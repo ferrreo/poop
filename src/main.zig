@@ -202,7 +202,7 @@ pub fn main() !void {
                         .enable_on_exec = true,
                     },
                 };
-                perf_fd.* = std.posix.perf_event_open(&attr, 0, -1, perf_fds[0], PERF.FLAG.FD_CLOEXEC) catch |err| {
+                perf_fd.* = std.posix.perf_event_open(&attr, 0, -1, -1, PERF.FLAG.FD_CLOEXEC) catch |err| {
                     std.debug.panic("unable to open perf event: {s}\n", .{@errorName(err)});
                 };
             }
